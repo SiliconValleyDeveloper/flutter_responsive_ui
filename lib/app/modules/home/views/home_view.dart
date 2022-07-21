@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_responsive/app/modules/home/component/left_drawer.dart';
 import 'package:flutter_responsive/app/modules/home/component/side_menu.dart';
 import 'package:flutter_responsive/app/utils/responsive.dart';
 
 import 'package:get/get.dart';
 
+import '../component/total_cargo_tonnage.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -14,11 +16,11 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
 
       appBar: AppBar(
-        automaticallyImplyLeading: Responsive.isDesktop(context) ? false : true,
-        title: Responsive.isDesktop( context) ? Text('Desktop'): Text('Mobile and Tablet'),
+        automaticallyImplyLeading: Responsive.isDesktop(context) ? false : Responsive.isTablet(context) ? false:  true,
+        title: Responsive.isDesktop( context) ? Text('Desktop'):Responsive.isTablet( context) ? Text('Tablets'): Text("Mobile"),
         centerTitle: true,
       ),
-      drawer: SideMenu(),
+      drawer: const LeftSideMenu(),
       body:  Responsive.isDesktop(context) ? SafeArea(
         child:
         Expanded(
@@ -29,7 +31,7 @@ class HomeView extends GetView<HomeController> {
                 // and it takes 1/6 part of the screen
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Container(color: Colors.red,),
+                  child: LeftSideMenu(),
                 ),
               ),
               Expanded(
@@ -46,7 +48,7 @@ class HomeView extends GetView<HomeController> {
                                 flex: 2,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Container(color: Colors.orange.shade100,),
+                                  child: TotalCargoTonnage(),
                                 )),
 
                             Expanded(
@@ -149,7 +151,140 @@ class HomeView extends GetView<HomeController> {
               ),
             ],
           ),
-        )) : ListView(
+        )) :  Responsive.isTablet(context) ? SafeArea(
+          child:
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  flex : 1,
+                  // and it takes 1/6 part of the screen
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(child: LeftSideMenu(),),
+                  ),
+                ),
+                Expanded(
+                  // It takes 5/6 part of the screen
+                    flex: 5,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex : 1,
+                          // and it takes 1/6 part of the screen
+                          child:  Row(
+                            children: [
+                              Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(color: Colors.orange.shade100,),
+                                  )),
+
+                              Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(color: Colors.orange.shade300,),
+                                  )),
+                              Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(color: Colors.green,),
+                                  )),
+                              Expanded(
+                                  flex: 1,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(color: Colors.deepPurpleAccent.shade700,),
+                                  ))
+
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex : 1,
+                          // and it takes 1/6 part of the screen
+                          child: Row(
+                            children: [
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(color: Colors.blue.shade100,),
+                              )),
+
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(color: Colors.green.shade300,),
+                              )),
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(color: Colors.grey,),
+                              )),
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(color: Colors.black,),
+                              ))
+
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex : 1,
+                          // and it takes 1/6 part of the screen
+                          child: Row(
+                            children: [
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(color: Colors.grey.shade100,),
+                              )),
+
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(color: Colors.green.shade300,),
+                              )),
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(color: Colors.orangeAccent,),
+                              )),
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(color: Colors.red.shade700,),
+                              ))
+
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          flex : 1,
+                          // and it takes 1/6 part of the screen
+                          child:  Row(
+                            children: [
+
+
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(color: Colors.green.shade300,),
+                              )),
+
+                              Expanded(child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Container(color: Colors.green.shade900,),
+                              ))
+
+                            ],
+                          ),
+                        ),
+
+                      ],
+                    )
+                ),
+              ],
+            ),
+          ))
+
+
+          : ListView(
         children: [
           listTwo(),
           listTwo(),
