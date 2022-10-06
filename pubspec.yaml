@@ -19,6 +19,7 @@ dependencies:
   http:
   auto_animated: 3.0.1
   auto_size_text: ^3.0.0
+  get_storage:
 
 
   flutter: 

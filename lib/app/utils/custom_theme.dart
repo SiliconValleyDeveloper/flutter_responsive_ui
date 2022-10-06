@@ -93,6 +93,14 @@ TextStyle get titleStyleBold {
           color: Get.isDarkMode ? CupertinoColors.white : CupertinoColors.black));
 }
 
+TextStyle get titleStyleFade {
+  return GoogleFonts.poppins(
+      textStyle: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: Get.isDarkMode ? CupertinoColors.white : CupertinoColors.black.withOpacity(0.50)));
+}
+
 TextStyle get subTitleStyle {
   return GoogleFonts.lato(
       textStyle: TextStyle(
@@ -107,6 +115,14 @@ TextStyle get subTitleStyleBold {
           fontSize: 14,
           fontWeight: FontWeight.bold,
           color: Get.isDarkMode ? CupertinoColors.white : CupertinoColors.black));
+}
+
+TextStyle get subTitleStyleFade {
+  return GoogleFonts.lato(
+      textStyle: TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.bold,
+          color: Get.isDarkMode ? CupertinoColors.white : CupertinoColors.systemGrey));
 }
 
 TextStyle get buttonStyleBold {
@@ -146,7 +162,7 @@ TextStyle get semiParagraphStyle {
       textStyle: TextStyle(
           fontSize: 10,
           fontWeight: FontWeight.w600,
-          color: Get.isDarkMode ? CupertinoColors.white : CupertinoColors.black));
+          color: Get.isDarkMode ? CupertinoColors.black : CupertinoColors.white));
 }
 
 TextStyle get timeStyleBold {
